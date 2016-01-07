@@ -1,0 +1,9 @@
+<div  {% if not request.path.split("/")[1] == "login" %}  class="main_content" style="width: 80%; float: right;"   {% endif %}>
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{category}}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+</div>

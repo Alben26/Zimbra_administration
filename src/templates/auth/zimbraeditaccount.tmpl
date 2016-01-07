@@ -1,0 +1,20 @@
+{% from "macros/fields.tmpl" import render_input_field, render_password_field,
+                                    render_submit %}
+{% extends "shared/layout.tmpl" %}
+
+{% block title %}Úprava účtu{% endblock %}
+
+{% block content %}
+    {% include "shared/side_menu.tmpl" %}
+    <h2 class="header_pages">Úprava účtu - <span class="span-display-name">{{ displayName }}</span></h2>
+    <div class="main_content col-md-9">
+      <form method="POST" id="register-form">
+        {{ form.hidden_tag() }}
+          {# Vykreslí vstupní pole pro nové jméno #}
+        {{ render_input_field(form.displayname, value=displayName) }}
+          {# Vykreslí tlačítko pro potvrzení #}
+        {{ render_submit("Upravit") }}
+      </form>
+    </div>
+{% endblock %}
+

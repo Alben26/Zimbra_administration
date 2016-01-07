@@ -1,0 +1,29 @@
+{% from "macros/fields.tmpl" import render_input_field, render_password_field,
+                                    render_submit, render_field %}
+{% extends "shared/layout.tmpl" %}
+
+{% block title %}Nový uživatel{% endblock %}
+
+{% block content %}
+    {% include "shared/side_menu.tmpl" %}
+    <h2 class="header_pages">Nový uživatel</h2>
+    <div class="main_content col-md-9">
+      <form method="POST" id="register-form">
+        {{ form.hidden_tag() }}
+        {# Vykreslí vstupní pole pro email #}
+        {{ render_input_field(form.email) }}
+          {% if current_user.email.split("@")[1] == "sspu-opava.local" %}
+              <div id="select_domain">
+                {{ render_field(form.domains) }}
+              </div>
+          {% endif %}
+          {# Vykreslí vstupní pole pro heslo #}
+        {{ render_password_field(form.password) }}
+          {# Vykreslí vstupní pole pro jméno #}
+        {{ render_input_field(form.displayname) }}
+
+          {# Vykreslí tlačítko pro potvrzení #}
+        {{ render_submit("Vytvořit") }}
+      </form>
+    </div>
+{% endblock %}
